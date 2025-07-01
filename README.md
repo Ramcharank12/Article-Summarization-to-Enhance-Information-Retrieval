@@ -20,19 +20,6 @@ Prerequisites
 	•	Python 3.7+
 	•	pip
 
-Installation
-
-git clone https://github.com/your-username/Article-Summarization-to-Enhance-Information-Retrieval.git
-cd Article-Summarization-to-Enhance-Information-Retrieval
-pip install -r requirements.txt
-
-Usage
-python summarize.py
-
-Or if using Streamlit:
-streamlit run app.py
-
-
 📝 Example
 
 Input:
