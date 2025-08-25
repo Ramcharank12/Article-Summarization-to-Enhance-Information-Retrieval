@@ -1,27 +1,10 @@
-# import streamlit as st
-# Install Modules
-# !pip install transformers==2.8.0
-# !pip install torch==1.4.0
-# !pip install datasets transformers[sentencepiece]
-# !pip install sentencepiece
-
-# import streamlit as st
 import streamlit as st
+import torch
+from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
+from PyPDF2 import PdfReader
 
 st.set_page_config(layout="wide")
 
-# Import Module
-import torch
-# from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
-from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
-
-
-from PyPDF2 import PdfReader
-
-# initialize the pretrained model
-# model = T5ForConditionalGeneration.from_pretrained('t5-base')
-# tokenizer = T5Tokenizer.from_pretrained('t5-base')
-# device = torch.device('cpu')
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = T5ForConditionalGeneration.from_pretrained('t5-base').to(device)
 tokenizer = T5Tokenizer.from_pretrained('t5-base')
@@ -76,7 +59,7 @@ choice = st.sidebar.selectbox("Select your choice", ['Home',"Summarize Text", "S
 if choice == "Home":
     st.title("Article Summarization to Enhance Information Retrieval")
     #make image center
-    st.image("/Users/charan/Desktop/AI-Summarization/1.png", use_container_width=True)
+    st.image("1.png", use_container_width=True)
 if choice == "Summarize Text":
     st.subheader("Text Summarization to Enhance Information Retrieval")
     input_text = st.text_area("Enter your text here")
@@ -92,7 +75,7 @@ if choice == "Summarize Text":
                 st.success(result)
 
 elif choice == "Summarize Document":
-    st.subheader("Article Summarization to Enhance Information Retrieval")
+    st.image("1.png", use_container_width=True)
     input_file = st.file_uploader("Upload your document here", type=['pdf'])
     if input_file is not None:
         if st.button("Summarize Document"):
@@ -109,3 +92,4 @@ elif choice == "Summarize Document":
                 text = extract_text_from_pdf("doc_file.pdf")
                 doc_summary = text_summary(text)
                 st.success(doc_summary)
+
